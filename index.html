@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contagem Regressiva</title>
   <link rel="stylesheet" href="style.css">
 
@@ -25,9 +25,34 @@
     </div>
   </div>
 
+  <!-- Anúncio no canto direito -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2756564663289519"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <!-- Efeito de neve -->
   <div id="snow"></div>
 
   <script src="script.js"></script>
+
+  <style>
+    /* CSS extra para posicionar o anúncio no canto direito */
+    .ad-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 300px;
+      z-index: 999;
+    }
+  </style>
+
 </body>
 </html>
