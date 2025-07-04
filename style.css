@@ -1,198 +1,28 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #2e3b4e;
-    background-image: url('natal.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    position: relative;
-    transition: background-color 1s ease;
-    overflow: hidden; /* Para esconder a neve que sai da tela */
-}
-
-#snow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 5;
-    opacity: 0.7;
-    overflow: hidden;
-}
-
-.snowflake {
-    position: absolute;
-    top: -10px;
-    background-color: white;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    opacity: 0.8;
-    animation: snowfall 10s linear infinite;
-}
-
-@keyframes snowfall {
-    to {
-        transform: translateY(100vh);
-    }
-}
-
-.container {
-    padding: 20px;
-    transition: opacity 0.3s ease, box-shadow 0.3s ease;
-    background-color: rgba(0, 123, 255, 0.4);
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    position: relative;
-    top: 0;
-    animation: fadeIn 3s ease-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.container:hover {
-    opacity: 0.8;
-    box-shadow: 0 0 30px white, 0 0 50px white;
+	padding: 2rem;
+	font-family: -apple-system, BlinkMacSystemFont, "Arial", sans-serif;
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    transition: text-shadow 0.3s ease;
+	font-size: 16px;
+	margin-top: 0;
 }
 
-h1:hover {
-    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+p {
+	color: rgb(107, 114, 128);
+	font-size: 15px;
+	margin-bottom: 10px;
+	margin-top: 5px;
 }
 
-#countdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.card {
+	max-width: 620px;
+	margin: 0 auto;
+	padding: 16px;
+	border: 1px solid lightgray;
+	border-radius: 16px;
 }
 
-.time-box {
-    background-color: rgba(173, 216, 230, 0.7);
-    margin: 0 10px;
-    padding: 20px;
-    border-radius: 10px;
-    font-size: 3em;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: opacity 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
-.time-box:hover {
-    opacity: 0.8;
-    box-shadow: 0 0 30px white, 0 0 50px white, 0 0 100px white;
-}
-
-.time-box span {
-    font-size: 0.5em;
-    font-weight: normal;
-}
-
-#days {
-    background-color: rgba(173, 216, 230, 0.7);
-}
-
-#hours {
-    background-color: rgba(173, 216, 230, 0.7);
-}
-
-#minutes {
-    background-color: rgba(173, 216, 230, 0.7);
-}
-
-#seconds {
-    background-color: rgba(173, 216, 230, 0.7);
-}
-
-button {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: rgb(255, 76, 106);
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: opacity 0.3s ease, box-shadow 0.3s ease;
-    z-index: 10;
-    backdrop-filter: blur(3px);
-}
-
-button:hover {
-    background-color: rgb(255, 42, 71);
-    opacity: 1;
-    box-shadow: 0 0 30px white, 0 0 50px white, 0 0 100px white;
-}
-
-#resetButton {
-    position: fixed;
-    top: 60px;
-    left: 10px;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: rgb(255, 153, 51);
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: opacity 0.3s ease, box-shadow 0.3s ease;
-    z-index: 10;
-    backdrop-filter: blur(3px);
-}
-
-#resetButton:hover {
-    background-color: rgb(255, 120, 31);
-    opacity: 1;
-    box-shadow: 0 0 30px white, 0 0 50px white, 0 0 100px white;
-}
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2.2em;
-    }
-
-    .time-box {
-        font-size: 2.5em;
-        width: 80px;
-        height: 80px;
-    }
-
-    .time-box span {
-        font-size: 0.4em;
-    }
+.card p:last-child {
+	margin-bottom: 0;
 }
