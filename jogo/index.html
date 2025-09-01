@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game | Modern Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+        .float-animation {
+            animation: float 2s ease-in-out infinite;
+        }
+        #game-board {
+            background-color: #1a202c;
+            border: 8px solid #4a5568;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .snake-head {
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .snake-body {
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+        #mobile-controls {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            #mobile-controls {
+                display: grid;
+            }
+            #desktop-controls {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <header class="py-6 bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-center md:text-left text-green-400 flex justify-center items-center">
+                    <i class="fas fa-snake mr-3"></i> Snake Game: WASD Edition
+                </h1>
+                <div class="mt-4 md:mt-0 flex items-center">
+                    <div class="mr-4 text-green-400">
+                        <i class="fas fa-keyboard mr-2"></i>WASD/Arrows
+                    </div>
+                    <div class="text-yellow-400">
+                        <i class="fas fa-mobile-alt mr-2"></i>or tap controls
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center">
+        <div class="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl gap-8 mb-8">
+            <div class="flex flex-col items-center order-2 md:order-1">
+                <div class="relative">
+                    <canvas id="game-board" width="400" height="400" class="pulse-animation"></canvas>
+                    <div id="game-over" class="hidden absolute inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center rounded">
+                        <h2 class="text-3xl font-bold text-red-500 mb-4">Game Over!</h2>
+                        <p class="text-xl mb-2">Final Score: <span id="final-score" class="text-green-400">0</span></p>
+                        <p id="new-highscore" class="hidden text-lg mb-4 text-yellow-400">
+                            <i class="fas fa-trophy mr-2"></i>New High Score!
+                        </p>
+                        <button id="restart-btn" class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition shadow-lg transform hover:scale-105 active:scale-95">
+                            <i class="fas fa-redo mr-2"></i>Play Again
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex gap-4">
+                    <button id="start-btn" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition flex items-center shadow-lg transform hover:scale-105 active:scale-95">
+                        <i class="fas fa-play mr-2"></i>Start Game
+                    </button>
+                    <button id="pause-btn" class="hidden px-6 py-3 bg-yellow-500 hover:bg-yellow-600 rounded-lg font-semibold transition flex items-center shadow-lg transform hover:scale-105 active:scale-95">
+                        <i class="fas fa-pause mr-2"></i>Pause
+                    </button>
+                </div>
+
+                <div id="mobile-controls" class="mt-6 w-full max-w-xs">
+                    <div class="grid grid-cols-3 gap-2 text-center">
+                        <div></div>
+                        <button data-dir="UP" class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition active:bg-gray-500 flex justify-center items-center">
+                            <i class="fas fa-arrow-up text-green-400 text-xl"></i>
+                        </button>
+                        <div></div>
+                        <button data-dir="LEFT" class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition active:bg-gray-500 flex justify-center items-center">
+                            <i class="fas fa-arrow-left text-green-400 text-xl"></i>
+                        </button>
+                        <button data-dir="DOWN" class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition active:bg-gray-500 flex justify-center items-center">
+                            <i class="fas fa-arrow-down text-green-400 text-xl"></i>
+                        </button>
+                        <button data-dir="RIGHT" class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition active:bg-gray-500 flex justify-center items-center">
+                            <i class="fas fa-arrow-right text-green-400 text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg order-1 md:order-2 w-full max-w-xs float-animation">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-green-400 flex items-center">
+                            <i class="fas fa-star mr-2"></i>Score
+                        </h3>
+                        <p class="text-3xl font-bold" id="score-display">0</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-red-400 flex items-center">
+                            <i class="fas fa-trophy mr-2"></i>High Score
+                        </h3>
+                        <p class="text-3xl font-bold" id="high-score-display">0</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-3 flex items-center">
+                        <i class="fas fa-gamepad mr-2"></i>Controls
+                    </h3>
+                    <div class="grid grid-cols-3 gap-2 text-center" id="desktop-controls">
+                        <div></div>
+                        <button data-dir="UP" class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition active:bg-gray-500">
+                            <i class="fas fa-arrow-up text-green-400"></i>
+                        </button>
+                        <div></div>
+                        <button data-dir="LEFT" class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition active:bg-gray-500">
+                            <i class="fas fa-arrow-left text-green-400"></i>
+                        </button>
+                        <button data-dir="DOWN" class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition active:bg-gray-500">
+                            <i class="fas fa-arrow-down text-green-400"></i>
+                        </button>
+                        <button data-dir="RIGHT" class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition active:bg-gray-500">
+                            <i class="fas fa-arrow-right text-green-400"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3 text-sm text-gray-400">
+                        <p>Keyboard: WASD or Arrow Keys</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 flex items-center">
+                        <i class="fas fa-cog mr-2"></i>Settings
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label for="speed-select" class="block mb-1">Game Speed</label>
+                            <select id="speed-select" class="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                                <option value="200">Casual</option>
+                                <option value="150">Slow</option>
+                                <option value="100" selected>Normal</option>
+                                <option value="70">Fast</option>
+                                <option value="40">Insane</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center mt-4">
+                            <input type="checkbox" id="wall-collision" class="mr-2" checked>
+                            <label for="wall-collision">Wall Collision</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="speed-increase" class="mr-2" checked>
+                            <label for="speed-increase">Increase Speed</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 max-w-2xl text-center text-gray-300 bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-green-400 flex justify-center items-center">
+                <i class="fas fa-question-circle mr-2"></i>How to Play
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <div>
+                    <h3 class="font-semibold text-yellow-400 mb-2"><i class="fas fa-keyboard mr-2"></i>Controls</h3>
+                    <ul class="space-y-1 text-sm">
+                        <li><i class="fas fa-arrow-up mr-2 text-green-400"></i>W or Up Arrow - Move Up</li>
+                        <li><i class="fas fa-arrow-down mr-2 text-green-400"></i>S or Down Arrow - Move Down</li>
+                        <li><i class="fas fa-arrow-left mr-2 text-green-400"></i>A or Left Arrow - Move Left</li>
+                        <li><i class="fas fa-arrow-right mr-2 text-green-400"></i>D or Right Arrow - Move Right</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-red-400 mb-2"><i class="fas fa-info-circle mr-2"></i>Rules</h3>
+                    <ul class="space-y-1 text-sm">
+                        <li><i class="fas fa-apple-alt mr-2 text-red-400"></i>Eat red food to grow</li>
+                        <li><i class="fas fa-flask mr-2 text-blue-400"></i>Don't hit walls or yourself</li>
+                        <li><i class="fas fa-chart-line mr-2 text-purple-400"></i>Score 10 points per food</li>
+                        <li><i class="fas fa-bolt mr-2 text-yellow-400"></i>Game speeds up over time</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-400 italic">
+                Pro Tip: The snake gets faster as you eat more food!
+            </p>
+        </div>
+    </main>
+
+    <footer class="py-4 bg-gray-800 text-center text-gray-400">
+        <p class="flex justify-center items-center">
+            © 2023 Snake Game | Made with 
+            <i class="fas fa-heart text-red-500 mx-1"></i>
+            and JavaScript
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('game-board');
+            const ctx = canvas.getContext('2d');
+            const scoreDisplay = document.getElementById('score-display');
+            const highScoreDisplay = document.getElementById('high-score-display');
+            const gameOverDisplay = document.getElementById('game-over');
+            const finalScoreDisplay = document.getElementById('final-score');
+            const startBtn = document.getElementById('start-btn');
+            const pauseBtn = document.getElementById('pause-btn');
+            const restartBtn = document.getElementById('restart-btn');
+            const speedSelect = document.getElementById('speed-select');
+            const wallCollision = document.getElementById('wall-collision');
+            const speedIncrease = document.getElementById('speed-increase');
+            const newHighscoreEl = document.getElementById('new-highscore');
+
+            const box = 20;
+            let snake = [];
+            let food = {};
+            let direction = '';
+            let lastDirection = '';
+            let game;
+            let score = 0;
+            let highScore = localStorage.getItem('snakeHighScore') || 0;
+            let gameStarted = false;
+            let paused = false;
+            let speed = 100;
+            let foodEaten = 0;
+            let newHighscore = false;
+
+            highScoreDisplay.textContent = highScore;
+
+            function initGame() {
+                snake = [{ x: 9 * box, y: 10 * box }];
+                placeFood();
+                direction = '';
+                lastDirection = '';
+                score = 0;
+                foodEaten = 0;
+                newHighscore = false;
+                scoreDisplay.textContent = score;
+                gameOverDisplay.classList.add('hidden');
+                newHighscoreEl.classList.add('hidden');
+                gameStarted = true;
+                paused = false;
+                startBtn.classList.add('hidden');
+                pauseBtn.classList.remove('hidden');
+                draw();
+            }
+
+            function placeFood() {
+                const maxPos = canvas.width / box - 1;
+                food = {
+                    x: Math.floor(Math.random() * maxPos) * box,
+                    y: Math.floor(Math.random() * maxPos) * box
+                };
+
+                // Make sure food doesn't appear on snake
+                for (let i = 0; i < snake.length; i++) {
+                    if (snake[i].x === food.x && snake[i].y === food.y) {
+                        return placeFood();
+                    }
+                }
+            }
+
+            function draw() {
+                // Clear canvas
+                ctx.fillStyle = '#1a202c';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Draw food with gradient effect
+                const gradient = ctx.createRadialGradient(
+                    food.x + box/2, food.y + box/2, 0,
+                    food.x + box/2, food.y + box/2, box/2
+                );
+                gradient.addColorStop(0, '#ef4444');
+                gradient.addColorStop(1, '#b91c1c');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(food.x + box/2, food.y + box/2, box/2 - 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#ef4444';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Draw snake
+                for (let i = 0; i < snake.length; i++) {
+                    if (i === 0) {
+                        // Head with gradient
+                        const headGradient = ctx.createLinearGradient(
+                            snake[i].x, snake[i].y,
+                            snake[i].x + box, snake[i].y + box
+                        );
+                        headGradient.addColorStop(0, '#10b981');
+                        headGradient.addColorStop(1, '#065f46');
+                        ctx.fillStyle = headGradient;
+                        
+                        ctx.beginPath();
+                        if (direction === 'LEFT' || direction === 'RIGHT') {
+                            ctx.roundRect(snake[i].x, snake[i].y, box, box, [box/2, box/2, 4, 4]);
+                        } else if (direction === 'UP' || direction === 'DOWN') {
+                            ctx.roundRect(snake[i].x, snake[i].y, box, box, [4, 4, box/2, box/2]);
+                        } else {
+                            ctx.roundRect(snake[i].x, snake[i].y, box, box, [box/2, box/2, box/2, box/2]);
+                        }
+                        ctx.fill();
+
+                        // Eyes
+                        ctx.fillStyle = 'white';
+                        if (direction === 'RIGHT') {
+                            ctx.fillRect(snake[i].x + box - 6, snake[i].y + 5, 4, 4);
+                            ctx.fillRect(snake[i].x + box - 6, snake[i].y + box - 9, 4, 4);
+                        } else if (direction === 'LEFT') {
+                            ctx.fillRect(snake[i].x + 2, snake[i].y + 5, 4, 4);
+                            ctx.fillRect(snake[i].x + 2, snake[i].y + box - 9, 4, 4);
+                        } else if (direction === 'UP') {
+                            ctx.fillRect(snake[i].x + 5, snake[i].y + 2, 4, 4);
+                            ctx.fillRect(snake[i].x + box - 9, snake[i].y + 2, 4, 4);
+                        } else if (direction === 'DOWN') {
+                            ctx.fillRect(snake[i].x + 5, snake[i].y + box - 6, 4, 4);
+                            ctx.fillRect(snake[i].x + box - 9, snake[i].y + box - 6, 4, 4);
+                        }
+                    } else {
+                        // Body with gradient
+                        const bodyGradient = ctx.createLinearGradient(
+                            snake[i].x, snake[i].y,
+                            snake[i].x + box, snake[i].y + box
+                        );
+                        bodyGradient.addColorStop(0, '#84cc16');
+                        bodyGradient.addColorStop(1, '#3f6212');
+                        ctx.fillStyle = bodyGradient;
+                        
+                        ctx.beginPath();
+                        ctx.roundRect(snake[i].x, snake[i].y, box, box, 4);
+                        ctx.fill();
+                    }
+                }
+
+                // Draw grid (optional)
+                ctx.strokeStyle = '#2d3748';
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < canvas.width; i += box) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, canvas.height);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(canvas.width, i);
+                    ctx.stroke();
+                }
+            }
+
+            function update() {
+                if (!direction || paused) return;
+
+                const head = { x: snake[0].x, y: snake[0].y };
+
+                // Update head position based on direction
+                switch (direction) {
+                    case 'LEFT': head.x -= box; break;
+                    case 'UP': head.y -= box; break;
+                    case 'RIGHT': head.x += box; break;
+                    case 'DOWN': head.y += box; break;
+                }
+
+                // Check if wall collision is enabled
+                if (wallCollision.checked) {
+                    // Wall collision check
+                    if (head.x < 0 || head.y < 0 || head.x >= canvas.width || head.y >= canvas.height) {
+                        return gameOver();
+                    }
+                } else {
+                    // Wrap around if wall collision is off
+                    if (head.x < 0) head.x = canvas.width - box;
+                    if (head.y < 0) head.y = canvas.height - box;
+                    if (head.x >= canvas.width) head.x = 0;
+                    if (head.y >= canvas.height) head.y = 0;
+                }
+
+                // Check if game over (self collision)
+                for (let i = 0; i < snake.length; i++) {
+                    if (head.x === snake[i].x && head.y === snake[i].y) {
+                        return gameOver();
+                    }
+                }
+
+                // Add new head
+                snake.unshift(head);
+
+                // Check if food eaten
+                if (head.x === food.x && head.y === food.y) {
+                    placeFood();
+                    score += 10;
+                    foodEaten++;
+
+                    // Increase speed based on settings
+                    if (speedIncrease.checked && foodEaten % 5 === 0 && speed > 30) {
+                        speed -= 5;
+                        clearInterval(game);
+                        game = setInterval(gameLoop, speed);
+                    }
+                } else {
+                    // Remove tail
+                    snake.pop();
+                }
+
+                scoreDisplay.textContent = score;
+                draw();
+            }
+
+            function gameLoop() {
+                update();
+            }
+
+            function gameOver() {
+                clearInterval(game);
+                gameStarted = false;
+
+                // Update high score if needed
+                if (score > highScore) {
+                    newHighscore = true;
+                    highScore = score;
+                    localStorage.setItem('snakeHighScore', highScore);
+                    highScoreDisplay.textContent = highScore;
+                }
+
+                finalScoreDisplay.textContent = score;
+                gameOverDisplay.classList.remove('hidden');
+                
+                if (newHighscore) {
+                    newHighscoreEl.classList.remove('hidden');
+                }
+                
+                pauseBtn.classList.add('hidden');
+                startBtn.classList.remove('hidden');
+            }
+
+            function setDirection(e) {
+                // Prevent accidental key presses when game not started
+                if (!gameStarted && e.type === 'keydown') return;
+
+                if (e.type === 'keydown') {
+                    // Prevent default behavior for arrow keys
+                    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd', 'W', 'A', 'S', 'D'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+
+                    // Set direction based on key pressed (WASD support)
+                    if ((e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') && lastDirection !== 'RIGHT' && direction !== 'RIGHT') {
+                        direction = 'LEFT';
+                    } else if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && lastDirection !== 'DOWN' && direction !== 'DOWN') {
+                        direction = 'UP';
+                    } else if ((e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') && lastDirection !== 'LEFT' && direction !== 'LEFT') {
+                        direction = 'RIGHT';
+                    } else if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && lastDirection !== 'UP' && direction !== 'UP') {
+                        direction = 'DOWN';
+                    }
+                } else if (e.type === 'click') {
+                    // Handle button clicks
+                    const dir = e.currentTarget.getAttribute('data-dir');
+                    if (dir === 'LEFT' && lastDirection !== 'RIGHT' && direction !== 'RIGHT') {
+                        direction = 'LEFT';
+                    } else if (dir === 'UP' && lastDirection !== 'DOWN' && direction !== 'DOWN') {
+                        direction = 'UP';
+                    } else if (dir === 'RIGHT' && lastDirection !== 'LEFT' && direction !== 'LEFT') {
+                        direction = 'RIGHT';
+                    } else if (dir === 'DOWN' && lastDirection !== 'UP' && direction !== 'UP') {
+                        direction = 'DOWN';
+                    }
+                }
+
+                lastDirection = direction;
+                
+                // Start game on first input if not started
+                if (!gameStarted && direction) {
+                    speed = parseInt(speedSelect.value);
+                    initGame();
+                    game = setInterval(gameLoop, speed);
+                }
+            }
+
+            function togglePause() {
+                if (!gameStarted) return;
+
+                paused = !paused;
+                if (paused) {
+                    pauseBtn.innerHTML = '<i class="fas fa-play mr-2"></i>Resume';
+                    canvas.style.filter = 'opacity(0.7)';
+                } else {
+                    pauseBtn.innerHTML = '<i class="fas fa-pause mr-2"></i>Pause';
+                    canvas.style.filter = 'none';
+                }
+            }
+
+            // Event listeners
+            document.addEventListener('keydown', setDirection);
+
+            // Control buttons
+            const controlButtons = document.querySelectorAll('[data-dir]');
+            controlButtons.forEach(button => {
+                button.addEventListener('click', setDirection);
+            });
+
+            startBtn.addEventListener('click', () => {
+                speed = parseInt(speedSelect.value);
+                initGame();
+                game = setInterval(gameLoop, speed);
+            });
+
+            pauseBtn.addEventListener('click', togglePause);
+
+            restartBtn.addEventListener('click', () => {
+                speed = parseInt(speedSelect.value);
+                initGame();
+                game = setInterval(gameLoop, speed);
+            });
+
+            // Initial draw
+            draw();
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=WDASDWW/mx" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
