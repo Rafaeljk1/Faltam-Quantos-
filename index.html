@@ -263,6 +263,11 @@
     class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
     🎮 Entrar no Jogo
   </button>
+  <button onclick="window.location.href='outrojogo/index.html'"
+    class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ml-4">
+    🕹️ Entrar no Outro Jogo
+  </button>
+
 </div>
 
 
@@ -278,6 +283,37 @@
        (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </div>
+
+
+<!-- Botão Hamburguer -->
+<div class="fixed top-4 right-4 z-30">
+  <button id="menuButton" class="text-white text-3xl focus:outline-none">
+    &#9776;
+  </button>
+</div>
+
+<!-- Menu Lateral -->
+<div id="sideMenu" class="fixed top-0 right-0 h-full w-64 bg-black/90 text-white transform translate-x-full transition-transform duration-300 z-40 p-6 flex flex-col gap-6">
+  <button id="closeMenu" class="self-end text-2xl">&times;</button>
+  <a href="index.html" class="hover:text-yellow-400">🏠 Início</a>
+  <a href="cobrinha/index.html" class="hover:text-yellow-400">🎮 Entrar no Jogo</a>
+  <a href="outrojogo/index.html" class="hover:text-yellow-400">🕹️ Outro Jogo</a>
+  <a href="#contato" class="hover:text-yellow-400">📩 Contato</a>
+</div>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const sideMenu = document.getElementById("sideMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  menuButton.addEventListener("click", () => {
+    sideMenu.classList.remove("translate-x-full");
+  });
+
+  closeMenu.addEventListener("click", () => {
+    sideMenu.classList.add("translate-x-full");
+  });
+</script>
 
 </body>
 </html>
