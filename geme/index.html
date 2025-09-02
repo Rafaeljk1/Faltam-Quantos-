@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bugatti Negro | O universo dos Bugatti em preto</title>
+    <meta name="description" content="Descubra o mundo dos Bugatti em edições pretas e especiais. Reviews, notícias, galerias e comparativos de hipercarros.">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bugatti Negro | O universo dos Bugatti em preto">
+    <meta property="og:description" content="Descubra o mundo dos Bugatti em edições pretas e especiais. Reviews, notícias, galerias e comparativos de hipercarros.">
+    <meta property="og:image" content="https://bugattinegro.com/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles & Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000',
+                        'dark-gray': '#0B0B0B',
+                        'medium-gray': '#1E1E1E',
+                        white: '#FFFFFF',
+                        electric: '#00E5FF'
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0B0B;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 229, 255, 0.1);
+        }
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(45deg, #00E5FF, transparent);
+            padding: 1px;
+            border-radius: 8px;
+        }
+        .gradient-border > div {
+            background: #0B0B0B;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-dark-gray border-b border-medium-gray">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center">
+                    <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 8H12V24H20V8Z" fill="#00E5FF"/>
+                        <path d="M28 8H24V24H28V8Z" fill="#00E5FF"/>
+                        <path d="M40 8H32V24H40V8Z" fill="#00E5FF"/>
+                        <path d="M48 8H44V24H48V8Z" fill="#00E5FF"/>
+                        <text x="60" y="20" font-family="Montserrat" font-weight="800" font-size="16" fill="white">BUGATTI NEGRO</text>
+                    </svg>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/artigos.html" class="text-white hover:text-electric transition-colors">Artigos</a>
+                    <a href="/reviews.html" class="text-white hover:text-electric transition-colors">Reviews</a>
+                    <a href="/galeria.html" class="text-white hover:text-electric transition-colors">Galeria</a>
+                    <a href="/comparativos.html" class="text-white hover:text-electric transition-colors">Comparativos</a>
+                    <a href="/sobre.html" class="text-white hover:text-electric transition-colors">Sobre</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden text-white">
+                        <i data-feather="menu"></i>
+                    </button>
+                    <button class="text-white hover:text-electric transition-colors">
+                        <i data-feather="search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative py-20 md:py-32 overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1623334045333-3f67ff2197c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')] bg-cover bg-center"></div>
+            
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-2xl" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold mb-6">Mergulhe no mundo Bugatti — edição em preto</h1>
+                    <p class="text-xl mb-8">Descubra a arte, engenharia e exclusividade dos modelos mais cobiçados do mundo em acabamento negro.</p>
+                    <a href="#artigos" class="inline-block bg-electric text-black font-semibold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-1">
+                        Explorar Artigos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Articles -->
+        <section id="artigos" class="py-16 bg-dark-gray">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-12 text-center">Últimas Matérias</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <article class="article-card gradient-border" data-aos="fade-up">
+                        <div>
+                            <div class="mb-4 relative">
+                                <img src="https://images.unsplash.com/photo-1623334045333-3f67f7f197c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Bugatti Chiron preto em estrada" 
+                                     class="w-full h-48 object-cover rounded-lg">
+                                <div class="absolute top-4 left-4 bg-electric text-black text-sm font-medium py-1 px-3 rounded-full">
+                                    Design
+                                </div>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400 mb-2">
+                                <span>12 Jun 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>8 min leitura</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">A evolução do Bugatti Chiron em preto: design e aerodinâmica</h3>
+                            <p class="text-gray-400 mb-4">Como a pintura negra transforma não apenas a estética mas também o desempenho aerodinâmico do Chiron.</p>
+                            <a href="/artigo/chiron-preto-design.html" class="text-electric hover:underline flex items-center">
+                                Ler mais
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Article 2 -->
+                    <article class="article-card gradient-border" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="mb-4 relative">
+                                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Detalhe da pintura de um Bugatti" 
+                                     class="w-full h-48 object-cover rounded-lg">
+                                <div class="absolute top-4 left-4 bg-electric text-black text-sm font-medium py-1 px-3 rounded-full">
+                                    Manutenção
+                                </div>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400 mb-2">
+                                <span>5 Jun 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>10 min leitura</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Manutenção e cuidados com pintura preto piano em hipercarros</h3>
+                            <p class="text-gray-400 mb-4">Guia completo para preservar a perfeição da pintura negra em seu Bugatti com técnicas profissionais.</p>
+                            <a href="/artigo/manutencao-pintura-preto.html" class="text-electric hover:underline flex items-center">
+                                Ler mais
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Article 3 -->
+                    <article class="article-card gradient-border" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="mb-4 relative">
+                                <img src="https://images.unsplash.com/photo-1601268859287-9cec8a74a79e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Bugatti Noire Edition" 
+                                     class="w-full h-48 object-cover rounded-lg">
+                                <div class="absolute top-4 left-4 bg-electric text-black text-sm font-medium py-1 px-3 rounded-full">
+                                    História
+                                </div>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400 mb-2">
+                                <span>29 Mai 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>12 min leitura</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">História das edições especiais "Noire": curiosidades e números</h3>
+                            <p class="text-gray-400 mb-4">A trajetória das limited editions mais exclusivas da Bugatti e os segredos por trás de sua produção.</p>
+                            <a href="/artigo/historia-noire-editions.html" class="text-electric hover:underline flex items-center">
+                                Ler mais
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="/artigos.html" class="inline-flex items-center text-electric hover:underline">
+                        Ver todos os artigos
+                        <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Review -->
+        <section class="py-16 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto gradient-border" data-aos="fade-up">
+                    <div class="p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="bg-electric text-black text-sm font-medium py-1 px-3 rounded-full">Review Exclusivo</span>
+                            <span class="text-gray-400 text-sm">18 Mai 2023</span>
+                        </div>
+                        
+                        <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Bugatti Chiron Noire: A obra-prima em preto</h2>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-electric">
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <span class="ml-2 text-lg font-semibold">5.0</span>
+                        </div>
+                        
+                        <img src="https://images.unsplash.com/photo-1623334044302-8bc54f0bf7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Bugatti Chiron Noire em destaque" 
+                             class="w-full h-64 object-cover rounded-lg mb-6">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h3 class="text-electric font-semibold mb-2">Prós</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="w-5 h-5 text-green-500 mr-2 mt-0.5"></i>
+                                        <span>Design agressivo e exclusivo</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="w-5 h-5 text-green-500 mr-2 mt-0.5"></i>
+                                        <span>Performance incomparável</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="check" class="w-5 h-5 text-green-500 mr-2 mt-0.5"></i>
+                                        <span>Acabamento impecável</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-electric font-semibold mb-2">Contras</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i data-feather="x" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                        <span>Preço extremamente elevado</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="x" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                        <span>Manutenção complexa e cara</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i data-feather="x" class="w-5 h-5 text-red-500 mr-2 mt-0.5"></i>
+                                        <span>Produção limitada</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="/review/chiron-noire.html" class="inline-flex items-center text-electric hover:underline font-semibold">
+                            Ler review completo
+                            <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Preview -->
+        <section class="py-16 bg-dark-gray">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-12 text-center">Galeria</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Gallery Items -->
+                    <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in">
+                        <img src="https://images.unsplash.com/photo-1623334045333-3f67f7f197c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Bugatti Chiron preto de frente" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer">
+                    </div>
+                    <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Detalhe do farol do Bugatti" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer">
+                    </div>
+                    <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1601268859287-9cec8a74a79e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Bugatti em estrada deserta" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer">
+                    </div>
+                    <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1623334044302-8bc54f0bf7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Interior do Bugatti Chiron" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer">
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="/galeria.html" class="inline-flex items-center text-electric hover:underline">
+                        Ver galeria completa
+                        <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-16 bg-medium-gray">
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto text-center" data-aos="fade-up">
+                    <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Fique por dentro</h2>
+                    <p class="text-gray-400 mb-8">Receba novidades e reviews exclusivas. Sem spam.</p>
+                    
+                    <form class="flex flex-col md:flex-row gap-4">
+                        <input type="email" 
+                               placeholder="Seu melhor e-mail" 
+                               class="flex-grow bg-dark-gray border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-electric">
+                        <button type="submit" class="bg-electric text-black font-semibold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors">
+                            Assinar
+                        </button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-4">Ao assinar, você concorda com nossa <a href="/politica-privacidade.html" class="text-electric hover:underline">Política de Privacidade</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <section class="py-12 bg-black">
+            <div class="container mx-auto px-4">
+                <h3 class="text-center text-gray-500 text-sm uppercase tracking-wider mb-8">Parceiros</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                    <div class="w-24 h-10 bg-gray-700 rounded"></div>
+                    <div class="w-24 h-10 bg-gray-700 rounded"></div>
+                    <div class="w-24 h-10 bg-gray-700 rounded"></div>
+                    <div class="w-24 h-10 bg-gray-700 rounded"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-gray border-t border-medium-gray py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <svg width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <path d="M18 7H11V21H18V7Z" fill="#00E5FF"/>
+                        <path d="M25 7H22V21H25V7Z" fill="#00E5FF"/>
+                        <path d="M35 7H29V21H35V7Z" fill="#00E5FF"/>
+                        <path d="M42 7H39V21H42V7Z" fill="#00E5FF"/>
+                        <text x="50" y="18" font-family="Montserrat" font-weight="800" font-size="12" fill="white">BUGATTI NEGRO</text>
+                    </svg>
+                    <p class="text-gray-400 text-sm">O blog definitivo sobre Bugatti em edições pretas e especiais.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Conteúdo</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/artigos.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Artigos</a></li>
+                        <li><a href="/reviews.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Reviews</a></li>
+                        <li><a href="/galeria.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Galeria</a></li>
+                        <li><a href="/comparativos.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Comparativos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Institucional</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/sobre.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Sobre</a></li>
+                        <li><a href="/contato.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Contato</a></li>
+                        <li><a href="/politica-privacidade.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Privacidade</a></li>
+                        <li><a href="/termos.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Conecte-se</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2023 Bugatti Negro. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize feather icons
+        feather.replace();
+        
+        // Mobile menu toggle (simplified for static demo)
+        document.querySelector('button[aria-label="Menu mobile"]').addEventListener('click', function() {
+            alert('Menu mobile seria aberto aqui em uma implementação completa');
+        });
+    </script>
+</body>
+</html>

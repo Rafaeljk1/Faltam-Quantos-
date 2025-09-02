@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigos | Bugatti Negro</title>
+    <meta name="description" content="Artigos, notícias e análises sobre Bugatti em edições pretas e especiais. Filtre por modelo, ano, cor e tags.">
+    
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000',
+                        'dark-gray': '#0B0B0B',
+                        'medium-gray': '#1E1E1E',
+                        white: '#FFFFFF',
+                        electric: '#00E5FF'
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0B0B;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 229, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-dark-gray border-b border-medium-gray">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center">
+                    <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 8H12V24H20V8Z" fill="#00E5FF"/>
+                        <path d="M28 8H24V24H28V8Z" fill="#00E5FF"/>
+                        <path d="M40 8H32V24H40V8Z" fill="#00E5FF"/>
+                        <path d="M48 8H44V24H48V8Z" fill="#00E5FF"/>
+                        <text x="60" y="20" font-family="Montserrat" font-weight="800" font-size="16" fill="white">BUGATTI NEGRO</text>
+                    </svg>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/artigos.html" class="text-electric font-semibold">Artigos</a>
+                    <a href="/reviews.html" class="text-white hover:text-electric transition-colors">Reviews</a>
+                    <a href="/galeria.html" class="text-white hover:text-electric transition-colors">Galeria</a>
+                    <a href="/comparativos.html" class="text-white hover:text-electric transition-colors">Comparativos</a>
+                    <a href="/sobre.html" class="text-white hover:text-electric transition-colors">Sobre</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden text-white">
+                        <i data-feather="menu"></i>
+                    </button>
+                    <button class="text-white hover:text-electric transition-colors">
+                        <i data-feather="search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow py-8">
+        <div class="container mx-auto px-4">
+            <!-- Breadcrumbs -->
+            <nav class="text-sm text-gray-400 mb-8">
+                <a href="/" class="hover:text-electric">Home</a>
+                <span class="mx-2">/</span>
+                <span>Artigos</span>
+            </nav>
+            
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl md:text-4xl font-heading font-bold mb-4">Artigos</h1>
+                <p class="text-gray-400">Explore nosso conteúdo sobre Bugatti em edições pretas e especiais.</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="bg-medium-gray rounded-lg p-4 mb-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div class="flex items-center">
+                        <i data-feather="filter" class="w-5 h-5 text-electric mr-2"></i>
+                        <span class="font-medium">Filtrar por:</span>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <select class="bg-dark-gray border border-gray-700 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-electric">
+                            <option value="">Todos os modelos</option>
+                            <option value="chiron">Chiron</option>
+                            <option value="veyron">Veyron</option>
+                            <option value="divo">Divo</option>
+                            <option value="centodieci">Centodieci</option>
+                        </select>
+                        
+                        <select class="bg-dark-gray border border-gray-700 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-electric">
+                            <option value="">Todos os anos</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                        
+                        <select class="bg-dark-gray border border-gray-700 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-electric">
+                            <option value="">Todas as cores</option>
+                            <option value="preto">Preto</option>
+                            <option value="carbon">Fibra de Carbono</option>
+                        </select>
+                        
+                        <select class="bg-dark-gray border border-gray-700 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-electric">
+                            <option value="">Todas as tags</option>
+                            <option value="design">Design</option>
+                            <option value="desempenho">Desempenho</option>
+                            <option value="historia">História</option>
+                            <option value="manutencao">Manutenção</option>
+                            <option value="mercado">Mercado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Repeat article cards from index.html plus more -->
+                <!-- Article 1 -->
+                <article class="article-card bg-medium-gray rounded-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1623334045333-3f67f7f197c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Bugatti Chiron preto em estrada" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <span>12 Jun 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>8 min leitura</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">A evolução do Bugatti Chiron em preto: design e aerodinâmica</h3>
+                        <p class="text-gray-400 mb-4">Como a pintura negra transforma não apenas a estética mas também o desempenho aerodinâmico do Chiron.</p>
+                        <a href="/artigo/chiron-preto-design.html" class="text-electric hover:underline flex items-center text-sm font-medium">
+                            Ler mais
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="article-card bg-medium-gray rounded-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Detalhe da pintura de um Bugatti" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <span>5 Jun 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>10 min leitura</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Manutenção e cuidados com pintura preto piano em hipercarros</h3>
+                        <p class="text-gray-400 mb-4">Guia completo para preservar a perfeição da pintura negra em seu Bugatti com técnicas profissionais.</p>
+                        <a href="/artigo/manutencao-pintura-preto.html" class="text-electric hover:underline flex items-center text-sm font-medium">
+                            Ler mais
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="article-card bg-medium-gray rounded-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601268859287-9cec8a74a79e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Bugatti Noire Edition" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <span>29 Mai 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>12 min leitura</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">História das edições especiais "Noire": curiosidades e números</h3>
+                        <p class="text-gray-400 mb-4">A trajetória das limited editions mais exclusivas da Bugatti e os segredos por trás de sua produção.</p>
+                        <a href="/artigo/historia-noire-editions.html" class="text-electric hover:underline flex items-center text-sm font-medium">
+                            Ler mais
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Additional articles would go here -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center mt-12">
+                <nav class="flex items-center space-x-2">
+                    <a href="#" class="flex items-center justify-center w-10 h-10 text-electric border border-electric rounded-lg">
+                        <i data-feather="chevron-left" class="w-5 h-5"></i>
+                    </a>
+                    
+                    <a href="#" class="flex items-center justify-center w-10 h-10 bg-electric text-black font-semibold rounded-lg">1</a>
+                    <a href="#" class="flex items-center justify-center w-10 h-10 text-white hover:bg-medium-gray rounded-lg">2</a>
+                    <a href="#" class="flex items-center justify-center w-10 h-10 text-white hover:bg-medium-gray rounded-lg">3</a>
+                    
+                    <span class="px-2 text-gray-400">...</span>
+                    
+                    <a href="#" class="flex items-center justify-center w-10 h-10 text-white hover:bg-medium-gray rounded-lg">8</a>
+                    
+                    <a href="#" class="flex items-center justify-center w-10 h-10 text-electric border border-electric rounded-lg">
+                        <i data-feather="chevron-right" class="w-5 h-5"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-dark-gray border-t border-medium-gray py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <svg width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <path d="M18 7H11V21H18V7Z" fill="#00E5FF"/>
+                        <path d="M25 7H22V21H25V7Z" fill="#00E5FF"/>
+                        <path d="M35 7H29V21H35V7Z" fill="#00E5FF"/>
+                        <path d="M42 7H39V21H42V7Z" fill="#00E5FF"/>
+                        <text x="50" y="18" font-family="Montserrat" font-weight="800" font-size="12" fill="white">BUGATTI NEGRO</text>
+                    </svg>
+                    <p class="text-gray-400 text-sm">O blog definitivo sobre Bugatti em edições pretas e especiais.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Conteúdo</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/artigos.html" class="text-electric font-semibold text-sm">Artigos</a></li>
+                        <li><a href="/reviews.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Reviews</a></li>
+                        <li><a href="/galeria.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Galeria</a></li>
+                        <li><a href="/comparativos.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Comparativos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Institucional</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/sobre.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Sobre</a></li>
+                        <li><a href="/contato.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Contato</a></li>
+                        <li><a href="/politica-privacidade.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Privacidade</a></li>
+                        <li><a href="/termos.html" class="text-gray-400 hover:text-electric transition-colors text-sm">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Conecte-se</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-electric transition-colors">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2023 Bugatti Negro. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
