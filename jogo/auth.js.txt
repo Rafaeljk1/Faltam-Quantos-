@@ -1,0 +1,34 @@
+// auth.js
+import { auth } from './firebase.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+export function registrarUsuario(email, senha) {
+    createUserWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+            alert("Usuário cadastrado com sucesso!");
+            console.log("Usuário:", userCredential.user);
+        })
+        .catch((error) => {
+            alert("Erro ao cadastrar: " + error.message);
+        });
+}
+
+export function loginUsuario(email, senha) {
+    signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+            alert("Login realizado com sucesso!");
+            console.log("Usuário:", userCredential.user);
+        })
+        .catch((error) => {
+            alert("Erro ao fazer login: " + error.message);
+        });
+}
+
+export function logoutUsuario() {
+    signOut(auth).then(() => {
+        alert("Logout realizado com sucesso!");
+    }).catch((error) => {
+        alert("Erro ao sair: " + error.message);
+    });
+}
